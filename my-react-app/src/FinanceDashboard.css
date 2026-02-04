@@ -57,12 +57,25 @@ main{
   flex:0 0 auto;
 }
 
+input::placeholder {
+    color: #666666;
+    font-weight: bold;           
+}
+input:hover {
+    outline: 2px solid rgba(95, 43, 226, 0.8); /* adds a visible border when hovered */
+}
+
+input,
+textarea {
+    cursor: default;
+}
+
 .add_stock:hover{cursor:pointer}
 .add_stock:active{background-color:rgb(25,25,200); box-shadow: inset 2px 3px 3px rgba(0,0,0,0.9); transform: translateY(1.5px)}
 .add_stock:focus, .add_stock:focus-visible { outline: none; }
 
 .stock_list{margin-top:20px; font-size:large; font-weight:bold}
-.stock_append_status{margin-bottom:6px; opacity:0.9}
+.stock_append_status{margin-bottom:6px;}
 
 .stock_entries{list-style:none; padding:0; margin:0}
 .stock_entry{margin:6px 0; background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:6px}
