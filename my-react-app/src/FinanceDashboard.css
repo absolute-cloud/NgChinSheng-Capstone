@@ -16,26 +16,31 @@ main{
   display:flex;
   flex-direction:column;
   gap:10px;
-  padding:32px;
+  text-align: center;
 }
 
 .stock_row{
   display:flex;
   align-items:stretch;
   gap:15px;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .stock_name,
 .stock_qty,
-.stock_value{
-  border:2px solid black;
-  background-color:var(--stock-row-bg-color);
+.stock_value {
+  font-family: 'Courier New', Courier, monospace !important;
+  padding: 5px 10px;
+  border: 2px solid black;
+  background-color: var(--stock-row-bg-color);
   color: var(--stock-row-text-color);
-  padding:5px 10px;
-  border-radius:5px;
-  width:150px;
-  text-align:left;
-  font:var(--stock-row-font);
+  border-radius: 5px;
+  width: 150px;
+  text-align: left;
+  box-sizing: content-box;
+  font-size:medium;
 }
 
 .add_stock{
