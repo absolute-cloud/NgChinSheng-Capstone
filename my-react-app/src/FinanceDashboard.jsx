@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./FinanceDashboard.css";
 
 export default function FinanceDashboard() {
@@ -7,11 +7,35 @@ export default function FinanceDashboard() {
   const [name, setName] = useState("");
   const [qty, setQty] = useState("");
   const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  const debounceTimer = useRef(null);
+
+  // Fetch ticker suggestions via AllOrigins proxy
+  async function fetchSuggestions(query) {
+    if (!query) {
+      setSuggestions([]);
+      return;
+    }
+    try {
+      const response = await fetch(
+        `https://api.allorigins.win/get?url=${encodeURIComponent(
+          "https://query1.finance.yahoo.com/v1/finance/search?q=" + query,
+        )}`,
+      );
+      const data = await response.json();
+      const parsed = JSON.parse(data.contents); // AllOrigins wraps the response
+      console.log("Yahoo via AllOrigins:", parsed);
+      setSuggestions(parsed.quotes || []);
+    } catch (err) {
+      console.error("Error fetching suggestions:", err);
+      setSuggestions([]);
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Error handling for empty inputs
     if (!name || !qty || !value) {
       setStatus("Please fill in all fields before submitting!");
       return;
@@ -20,22 +44,22 @@ export default function FinanceDashboard() {
     const newStock = {
       id: Date.now(),
       name,
-      qty: Number(qty), 
+      qty: Number(qty),
       value: Number(value),
     };
 
     setStocks((prev) => [...prev, newStock]);
     setStatus(`Added ${name} — ${qty} shares @ ${Number(value).toFixed(2)}`);
 
-    // clear inputs after submission
     setName("");
     setQty("");
     setValue("");
+    setSuggestions([]);
   }
 
   return (
     <main>
-      <h3 className="dashboard_title">Financee Dashboard</h3>
+      <h3 className="dashboard_title">Finance Dashboard</h3>
 
       <form className="stock_row" onSubmit={handleSubmit}>
         <input
@@ -43,14 +67,58 @@ export default function FinanceDashboard() {
           className="stock_name"
           placeholder="E.g. AAPL"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {
+            const val = e.target.value.toUpperCase();
+            setName(val);
+
+            // Debounce API call
+            if (debounceTimer.current) {
+              clearTimeout(debounceTimer.current);
+            }
+            debounceTimer.current = setTimeout(() => {
+              fetchSuggestions(val);
+            }, 300);
+          }}
+          onBlur={(e) => {
+            const ticker = e.target.value.toUpperCase();
+            if (ticker) {
+              const valid = suggestions.some(
+                (s) => s.symbol.toUpperCase() === ticker,
+              );
+              setStatus(
+                valid
+                  ? "Ticker symbol is valid."
+                  : "Invalid ticker symbol. Please check the code.",
+              );
+            }
+          }}
         />
+
+        {suggestions.length > 0 && (
+          <ul className="suggestions_dropdown">
+            {suggestions.map((s) => (
+              <li
+                key={s.symbol}
+                onClick={() => {
+                  setName(s.symbol);
+                  setSuggestions([]);
+                  setStatus(
+                    `Selected ${s.symbol} - ${s.shortname || s.longname}`,
+                  );
+                }}
+              >
+                {s.symbol} — {s.shortname || s.longname}
+              </li>
+            ))}
+          </ul>
+        )}
+
         <input
           type="number"
           className="stock_qty"
           placeholder="Quantity"
-          min="1" // enforce at least 1 share
-          step="1" // restrict to integers only
+          min="1"
+          step="1"
           value={qty}
           onChange={(e) => setQty(e.target.value)}
         />
@@ -60,7 +128,6 @@ export default function FinanceDashboard() {
           placeholder="Value"
           value={value}
           onChange={(e) => {
-            // restrict to numbers and one decimal point
             let v = e.target.value.replace(/[^0-9.]/g, "");
             const parts = v.split(".");
             if (parts.length > 2) {
@@ -69,7 +136,6 @@ export default function FinanceDashboard() {
             setValue(v);
           }}
           onBlur={() => {
-            // format to 2 decimal places when leaving the field
             if (value) {
               setValue(parseFloat(value).toFixed(2));
             }

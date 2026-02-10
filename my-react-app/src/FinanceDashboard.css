@@ -6,12 +6,14 @@
   --stock-row-font: inherit;
   --stock-row-text-color: black;
 }
+
 body, #root {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
   min-height: 100vh;
   margin: 0;
 }
+
 main{
   display:flex;
   flex-direction:column;
@@ -19,10 +21,39 @@ main{
   text-align: center;
 }
 
+/* New dropdown styles added */
+.suggestions_dropdown {
+  position: absolute;
+  top: 40px; /* same as input height */
+  left: 0;
+  background: gray;
+  border: 1px solid #ccc;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 200px; /* match ticker input width */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.suggestions_dropdown li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestions_dropdown li:hover {
+  background: #f0f0f0;
+}
+
 .stock_row{
+  /* position: relative;  <-- added to anchor dropdown absolutely */
+  position: relative; /* anchor dropdown to the form row */
   display:flex;
-  align-items:stretch;
-  gap:15px;
+  /* align-items:stretch; <-- deleted, replaced with center */
+  align-items:center; /* corrected: aligns inputs/buttons consistently */
+  /* gap:15px; <-- deleted, replaced with 8px */
+  gap:8px; /* corrected: tighter spacing */
   justify-content: center;
   width: fit-content;
   margin: 0 auto;
@@ -32,19 +63,23 @@ main{
 .stock_qty,
 .stock_value {
   font-family: 'Courier New', Courier, monospace !important;
-  padding: 5px 10px;
+  /* padding: 5px 10px; <-- deleted, replaced with 8px */
+  padding:8px; /* corrected: consistent padding with button */
   border: 2px solid black;
   background-color: var(--stock-row-bg-color);
   color: var(--stock-row-text-color);
   border-radius: 5px;
   width: 150px;
   text-align: left;
-  box-sizing: content-box;
+  /* box-sizing: content-box; <-- deleted, replaced with border-box */
+  box-sizing: border-box; /* corrected: ensures width includes padding/border */
   font-size:medium;
+  height:40px; /* added: consistent input height */
 }
 
 .add_stock{
-  padding:10px 15px;
+  /* padding:10px 15px; <-- deleted, replaced with 8px */
+  padding:8px; /* corrected: consistent padding with inputs */
   border-radius:5px 17px;
   color:rgb(223,246,255);
   background-color:rgb(35,35,255);
@@ -55,19 +90,22 @@ main{
   box-shadow:2px 3px 2px rgba(0,0,0,0.6), inset 2px 3px 2px rgba(188,188,255,0.6);
   width:120px;
   flex:0 0 auto;
+  height:40px; /* added: consistent button height */
+  font-size:14px; /* added: consistent font size */
 }
 
 input::placeholder {
     color: #666666;
     font-weight: bold;           
 }
+
 input:hover {
     outline: 2px solid rgba(95, 43, 226, 0.8); /* adds a visible border when hovered */
 }
 
 input,
 textarea {
-    cursor: default;
+    cursor: default
 }
 
 .add_stock:hover{cursor:pointer}
@@ -79,3 +117,5 @@ textarea {
 
 .stock_entries{list-style:none; padding:0; margin:0}
 .stock_entry{margin:6px 0; background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:6px}
+
+
