@@ -11,7 +11,7 @@ export default function FinanceDashboard() {
 
   const debounceTimer = useRef(null);
 
-  // Fetch ticker suggestions via AllOrigins proxy
+  // Fetch ticker suggestions via CORS Proxy (corsproxy.io)
   async function fetchSuggestions(query) {
     if (!query) {
       setSuggestions([]);
@@ -19,16 +19,21 @@ export default function FinanceDashboard() {
     }
     try {
       const response = await fetch(
-        `https://api.allorigins.win/get?url=${encodeURIComponent(
+        `https://corsproxy.io/?url=${encodeURIComponent(
           "https://query1.finance.yahoo.com/v1/finance/search?q=" + query,
         )}`,
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
-      const parsed = JSON.parse(data.contents); // AllOrigins wraps the response
-      console.log("Yahoo via AllOrigins:", parsed);
-      setSuggestions(parsed.quotes || []);
+      console.log("Yahoo via CORS Proxy:", data);
+      setSuggestions(data.quotes || []);
     } catch (err) {
       console.error("Error fetching suggestions:", err);
+      setStatus("Error fetching data. Please try again later.");
       setSuggestions([]);
     }
   }
@@ -80,10 +85,10 @@ export default function FinanceDashboard() {
             }, 300);
           }}
           onBlur={(e) => {
-            const ticker = e.target.value.toUpperCase();
+            const ticker = e.target.value.toUpperCase().trim();
             if (ticker) {
               const valid = suggestions.some(
-                (s) => s.symbol.toUpperCase() === ticker,
+                (s) => s.symbol.toUpperCase().trim() === ticker,
               );
               setStatus(
                 valid
