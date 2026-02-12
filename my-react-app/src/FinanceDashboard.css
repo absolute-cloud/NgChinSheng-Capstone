@@ -678,7 +678,6 @@ body {
   .summary_card {
     padding: 1rem;
   }
-}
 
 @media (max-width: 480px) {
   .hero_section {
