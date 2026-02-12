@@ -118,4 +118,15 @@ textarea {
 .stock_entries{list-style:none; padding:0; margin:0}
 .stock_entry{margin:6px 0; background:rgba(255,255,255,0.03); padding:6px 10px; border-radius:6px}
 
-
+.profit {
+  color: green;
+  font-weight: bold;
+}
+.loss {
+  color: red;
+  font-weight: bold;
+}
+.neutral {
+  color: rgb(40, 40, 255);
+  font-weight: bold;
+}
