@@ -483,12 +483,12 @@ function StockList() {
 function MarketInfo() {
   const { indices } = useContext(StockContext);
   const now = new Date();
-  const usTime = new Date(
-    now.toLocaleString("en-GB", { timeZone: "America/New_York" })
-  );
-  const sgTime = new Date(
-    now.toLocaleString("en-GB", { timeZone: "Asia/Singapore" })
-  );
+  
+  // Calculate timezone offsets: US Eastern (UTC-5/-4), Singapore (UTC+8)
+  const estOffset = -300; // EST UTC-5 (in minutes)
+  const sgtOffset = 480;  // SGT UTC+8 (in minutes)
+  const usTime = new Date(now.getTime() + (now.getTimezoneOffset() - estOffset) * 60000);
+  const sgTime = new Date(now.getTime() + (now.getTimezoneOffset() + sgtOffset) * 60000);
 
   const marketOpen = new Date(usTime);
   marketOpen.setHours(9, 30, 0, 0);
