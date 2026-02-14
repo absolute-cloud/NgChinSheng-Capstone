@@ -183,8 +183,7 @@ This project goes **beyond baseline requirements** with:
 
 ## 📝 Documentation Files
 
-1. **[VERSION_HISTORY.md](VERSION_HISTORY.md)** - Complete version progression from v0 to v8
-2. **[my-react-app/README.md](my-react-app/README.md)** - Detailed application documentation
+**[VERSION_HISTORY.md](VERSION_HISTORY.md)** - Complete version progression from v0 to v8
 
 ## 🔗 Links
 
@@ -192,4 +191,3 @@ This project goes **beyond baseline requirements** with:
 - **GitHub Repository**: https://github.com/absolute-cloud/NgChinSheng-Capstone
 
 **Project Status**: ✅ **COMPLETE & DEPLOYED**
->>>>>>> 5401f30 (edited: README.md)
