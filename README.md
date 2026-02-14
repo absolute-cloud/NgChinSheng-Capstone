@@ -123,7 +123,7 @@ The project fulfills all capstone requirements:
 ✅ **Q5: Component Composition** - Parent-child component patterns with props  
 ✅ **Q6: Package.json** - React & Vite dependencies properly configured  
 ✅ **Q7: Profit/Loss Functions** - Live price fetching & calculation logic  
-✅ **Q8: File Structure** - Organized component-based structure  
+✅ **Q8: File Structure** - Organized component-based structure using memoization 
 ✅ **Q9: Deployed Application** - Live on GitHub Pages with real-time data  
 
 **See [CAPSTONE_SCREENSHOTS_DOCUMENTATION.md](CAPSTONE_SCREENSHOTS_DOCUMENTATION.md) for detailed Q&A.**
@@ -173,7 +173,7 @@ This project goes **beyond baseline requirements** with:
 🌟 Portfolio analytics dashboard (gains, losses, win rate)  
 🌟 Market status indicator with countdown timer  
 🌟 Multi-timezone support (US EST & Singapore SGT)  
-🌟 Bid/Ask spread simulation
+🌟 Bid/Ask spread simulation  
 🌟 Comprehensive documentation  
 
 ## 📝 Documentation Files
