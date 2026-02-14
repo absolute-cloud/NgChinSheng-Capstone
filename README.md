@@ -173,10 +173,8 @@ This project goes **beyond baseline requirements** with:
 🌟 Portfolio analytics dashboard (gains, losses, win rate)  
 🌟 Market status indicator with countdown timer  
 🌟 Multi-timezone support (US EST & Singapore SGT)  
-🌟 Bid/Ask spread simulation  
-🌟 GitHub Actions CI/CD pipeline  
+🌟 Bid/Ask spread simulation
 🌟 Comprehensive documentation  
-🌟 Component memoization for performance  
 
 ## 📝 Documentation Files
 
