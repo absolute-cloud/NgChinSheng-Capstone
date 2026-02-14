@@ -126,8 +126,6 @@ The project fulfills all capstone requirements:
 ✅ **Q8: File Structure** - Organized component-based structure using memoization 
 ✅ **Q9: Deployed Application** - Live on GitHub Pages with real-time data  
 
-**See [CAPSTONE_SCREENSHOTS_DOCUMENTATION.md](CAPSTONE_SCREENSHOTS_DOCUMENTATION.md) for detailed Q&A.**
-
 ## 🔑 React Concepts Implemented
 
 ### Hooks
