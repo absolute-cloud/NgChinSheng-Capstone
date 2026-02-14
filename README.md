@@ -117,7 +117,7 @@ npm run deploy
 The project fulfills all capstone requirements:
 
 ✅ **Q1: Git History** - 20 meaningful commits with clear progression  
-✅ **Q2: Form Component** - Implemented with full validation and API integration  
+✅ **Q2: Form Component** - Implemented with full validation and API integration 
 ✅ **Q3: Invalid Symbol Handling** - Prevents invalid tickers from being added  
 ✅ **Q4: Error Handling** - Comprehensive try/catch and error messaging  
 ✅ **Q5: Component Composition** - Parent-child component patterns with props  
@@ -157,7 +157,7 @@ The project fulfills all capstone requirements:
 
 | Challenge | Solution | Learning |
 |-----------|----------|----------|
-| CORS Restrictions | Implemented corsproxy.io proxy | Browser security policies |
+| CORS Restrictions | Implemented corsproxy.io proxy with Yahoo Finance API instead of AlphaVantage API | Browser security policies |
 | API Rate Limiting | Added debouncing & fixed intervals | Optimize API calls |
 | Stale Closures | Used useCallback with dependencies | Hook dependency management |
 | Data Accuracy | Implemented proper type conversions | JavaScript precision |
