@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-# https://absolute-cloud.github.io/NgChinSheng-Capstone
-=======
 ## 🎯 Project Overview
 
-A professional React-based stock portfolio tracker that enables users to monitor their investments in real-time. The application fetches live stock prices, calculates profit/loss, and displays market indices with a modern, responsive user interface.
+A professional looking React-based stock portfolio tracker in dark theme that enables users to monitor their investments in real-time. The application fetches live stock prices, calculates profit/loss, and displays market indices with a modern, responsive user interface.
 
 **Live Demo**: https://absolute-cloud.github.io/NgChinSheng-Capstone/  
 **Repository**: https://github.com/absolute-cloud/NgChinSheng-Capstone
